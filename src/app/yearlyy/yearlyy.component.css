@@ -1,0 +1,23 @@
+.table {
+  color: white;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table,
+td,
+th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 8px;
+  position: sticky;
+  top: 0;
+}
+.fixed {
+  background-color: rgb(140, 205, 231);
+  color: rgb(3, 3, 37);
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
