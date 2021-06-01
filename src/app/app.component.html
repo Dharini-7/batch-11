@@ -1,0 +1,48 @@
+<div class="container">
+  <nav class="navbar navbar-light">
+    <form class="form-inline mx-auto-mb-2 text-center mg-lg-0">
+      <input
+        class="search-bar mr-lg-2"
+        type="search"
+        id="search"
+        placeholder="Search"
+        aria-label="Search"
+        [(ngModel)]="movieName"
+        name="movieName"
+      />
+      <button
+        class="btn btn-warning btn-sm my-2 my-sm-0"
+        (click)="onClickSearch()"
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </nav>
+</div>
+
+<div class="row justify-content-around">
+  <div class="container">
+    <div class="row-4 mt-2"></div>
+  </div>
+  <div class="col-md-3" *ngFor="let movie of search">
+    <mat-card style="background-color: rgb(240, 197, 118)">
+      <mat-card-header style="text-align: center"
+        ><img
+          [src]="movie.Poster"
+          [alt]="movie.Title"
+          width="200"
+          height="300"
+        />
+      </mat-card-header>
+      <mat-card-content class="card-title">{{ movie.Title }}</mat-card-content
+      ><mat-card-footer
+        ><a href="https://www.google.com/search?q= + {{ movie.Title }}"
+          ><button type="button" class="btn btn-info">Details</button></a
+        ></mat-card-footer
+      ></mat-card
+    >
+  </div>
+</div>
+
+<router-outlet></router-outlet>
