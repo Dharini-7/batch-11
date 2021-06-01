@@ -1,0 +1,126 @@
+<div class="alert alert-danger" *ngIf="error">
+  {{ error }}
+</div>
+<div class="text-center mt-5" *ngIf="isLoading">
+  <app-spinner></app-spinner>
+</div>
+<div class="wrapper">
+  <div class="row">
+    <div class="c0l-md-3" *ngFor="let product of Products">
+      <div class="card">
+        <img
+          [src]="product.productImageURL"
+          [alt]="product.productName"
+          height="150px"
+          width="100%"
+        />
+        <div class="card-body">
+          <div>
+            {{ product.ProductName }}
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-warning" (click)="deleteProduct(product)">
+            Delete
+          </button>
+          <a routerLink="/update-product"
+            ><button
+              class="btn btn-primary"
+              (click)="onEditProduct(product)"
+              data-toggle="modal"
+              data-target="#updateProductModal"
+            >
+              Update
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="updateProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type = "button"
+        class="close"
+        data-bs-dismiss="modal"
+        #modalCloseButton>
+      <span aria-hidden= "true">&times;</span></button>
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form
+        action=""
+        #editProductForm="ngForm"
+        (ngSubmit)="onFormSubmit()"
+        *ngIf = "selectedProductToEdit && !productUpdating"
+        *ngIf="auth.isLoogedIn() && auth.isAdmin()"
+      >
+        <div class="card bord">
+          <div class="card-header text-success text-center fw-bolder">
+            Add Product
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input5
+                class="form-control mb-4"
+                id="productName"
+                name="productName"
+                ngModel
+                #productName
+              />
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Product price</label>
+              <input
+                class="form-control mb-4"
+                id="productPrice"
+                name="productPrice"
+                ngModel
+                #productPrice
+              />
+            </div>
+            <div class="form-group">
+              <label for="productUrl">Product Url</label>
+              <input
+                class="form-control mb-4"
+                id="productUrl"
+                name="productUrl"
+                ngModel
+                #productUrl
+              />
+            </div>
+            <div class="form-group">
+              <label for="productDescription">Product Description</label>
+              <input
+                class="form-control mb-4"
+                id="productDescription"
+                name="productDescription"
+                ngModel
+                #productDescription
+              />
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="button-group float-right">
+              <button type="Submit" class="btn btn-secondary mx-2">Submit</button
+              ><button type="reset" class="btn btn-primary">Reset</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
